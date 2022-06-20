@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDoList</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+    <h1>ToDoリスト</h1>
+
+    <a href="/form">タスクの追加</a>
+
+    <table>
+		<tr>
+            <th>チェック</th>
+			<th>ID</th>
+			<th>タイトル</th>
+            <th>詳細</th>
+            <th></th>
+            <th></th>
+		</tr>
+		<tr th:each="res : ${dbList}">
+            <td>
+                <form action="" th:action="@{/}" method="GET" th:object="${list}">
+                    <input name="done" type="checkbox">
+                </form>
+            </td>
+			<td th:text="${res.id}">idの値</td>
+			<td th:text="${res.title}">titleの値</td>
+            <td th:text="${res.detail}">detailの値</td>
+			
+            <!-- /* ボタンを表示する */ -->
+            <td>
+                <form th:action="@{/edit/{id}(id = ${res.id})}">
+                    <input type="submit" value="編集">
+                </form>
+            </td>
+            <!-- /* 削除ボタンを表示する */ -->
+			<td>
+				<form th:action="@{/del/{id}(id = ${res.id})}">
+					<input type="submit" value="削除">
+				</form>
+			</td>
+		</tr>
+	</table>
+
+</body>
+</html>

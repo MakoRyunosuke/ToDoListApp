@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>form/confirm</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+
+	<h1>確認画面</h1>	  
+	
+    <table>
+        <tr>
+            <th>タイトル</th>
+            <th>詳細</th>
+        <tr>
+            <td th:text="${form.title}"></td>
+            <td th:text="${form.detail}"></td>
+        </tr>
+    </table>
+
+    <form method="get" action="" th:action="@{/form}">
+        <input type="hidden" name="id" th:value="${form.id}">
+        <input type="hidden" name="title" th:value="${form.title}">
+        <input type="hidden" name="detail" th:value="${form.detail}">
+        <input type="hidden" name="done" th:value="${form.done}">
+        <input type="submit" value="入力画面へ戻る">
+    </form>
+    
+    <form method="get" action="" th:action="@{/complete}">
+        <input type="hidden" name="id" th:value="${form.id}">
+        <input type="hidden" name="title" th:value="${form.title}">
+        <input type="hidden" name="detail" th:value="${form.detail}">
+        <input type="hidden" name="done" th:value="${form.done}">
+        <input type="submit" value="保存する">
+    </form>
+
+</body>
+</html>
